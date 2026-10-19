@@ -10,7 +10,7 @@ ENT.AdminOnly = true
 ENT.maxHealth = 150
 ENT.isNode = true
 ENT.canTransfer = false
-ENT.prodConnected
+ENT.prodConnected = false
 
 function ENT:SetupDataTables()
 
