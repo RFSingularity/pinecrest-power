@@ -10,7 +10,8 @@ ENT.AdminOnly = true
 ENT.maxHealth = 1500
 ENT.isNode = true
 ENT.canTransfer = false
-ENT.prodConnected = false
+ENT.prodConnected = false --[[ Will be put through a check
+to see if this node is connected to a Production Node.]]
 
 function ENT:SetupDataTables()
 
