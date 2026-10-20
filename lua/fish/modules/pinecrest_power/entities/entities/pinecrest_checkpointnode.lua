@@ -87,7 +87,7 @@ if CLIENT then
         local ang = self:GetAngles()
 
         lightPos:Add( ang:Forward() * -5 ) -- move it forward by X units
-        lightPos:Add( ang:Right() * -10 ) -- move it right by X units
+        lightPos:Add( ang:Right() * 5 ) -- move it right by X units
         lightPos:Add( ang:Up() * 20 )  -- move it up by X units
         local dlight = DynamicLight( self:EntIndex() )
 	    if ( dlight ) then
