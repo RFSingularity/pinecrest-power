@@ -7,17 +7,17 @@ ENT.Author = "The Singularity"
 ENT.Category = "Pinecrest"
 ENT.Spawnable = true
 ENT.AdminOnly = true
-ENT.maxHealth = 150
+ENT.maxHealth = 1500
 ENT.isNode = true
 ENT.canTransfer = false
 ENT.prodConnected = false
 
 function ENT:SetupDataTables()
 
-    self:NetworkVar( "Int", 0, "HP" )
-    self:NetworkVar( "Bool", 1, "IsOn" )
-    self:NetworkVar( "Bool", 2, "canTransfer" )
-    self:NetworkVar( "Bool", 3, "prodConnected")
+    self:NetworkVar( "Int", 0, "HP" ) -- Health Amount
+    self:NetworkVar( "Bool", 1, "IsOn" ) -- Node on or off
+    self:NetworkVar( "Bool", 2, "canTransfer" ) -- Can it transfer power
+    self:NetworkVar( "Bool", 3, "prodConnected") -- Boolean for Production Node
     
 end
 
