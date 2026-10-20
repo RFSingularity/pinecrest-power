@@ -12,7 +12,7 @@ ENT.maxPower = 10000
 ENT.transferRate = 1
 ENT.maxHealth = 10000
 ENT.isNode = true
-ENT.connectedNode = true
+ENT.prodConnected = true
 ENT.canTransfer = true
 
 function ENT:SetupDataTables()
