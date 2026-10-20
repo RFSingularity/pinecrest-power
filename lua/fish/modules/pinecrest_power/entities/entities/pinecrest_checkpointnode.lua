@@ -55,7 +55,7 @@ if SERVER then
             local other = rope:GetConstrainedEntities()
 
             if IsValid( other ) and other.isNode and other.canTransfer then
-                print("Connected to Node")
+                -- print("Connected to Node")
                 if other.connectedNode and self:GetHP() >= 0 then
                     self:SetIsOn( true )
                     self.connectedNode = true

@@ -82,7 +82,7 @@ if CLIENT then
 
     local red = Color( 255, 0, 0 )
     local green = Color( 0, 255, 0 )
-    local material = Material("sprites/glow04_noz")
+    local material = Material( "sprites/glow04_noz" )
     function ENT:Draw( flags )
         self:DrawModel( flags )
         local lightColor = self:GetIsOn() and green or red
