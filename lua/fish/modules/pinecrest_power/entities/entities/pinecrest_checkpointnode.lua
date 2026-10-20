@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-ENT.Base = "base_anim" -- test!!!
+ENT.Base = "base_anim"
 ENT.Type = "anim"
 ENT.PrintName = "Checkpoint Node"
 ENT.Author = "The Singularity"
