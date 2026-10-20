@@ -34,7 +34,7 @@ if SERVER then
     end
 
     function ENT:Initialize()
-        self:SetModel( "models/props_junk/TrafficCone001a.mdl" )
+        self:SetModel( "models/vehicles/inner_pod_arm.mdl" )
         self:PhysicsInit( SOLID_VPHYSICS )
         self:SetSolid( SOLID_VPHYSICS )
         self:SetUseType( SIMPLE_USE )

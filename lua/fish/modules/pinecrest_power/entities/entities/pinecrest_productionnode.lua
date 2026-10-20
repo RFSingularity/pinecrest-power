@@ -36,7 +36,7 @@ if SERVER then
     end
 
     function ENT:Initialize()
-        self:SetModel( "models/props_c17/FurnitureWashingmachine001a.mdl" ) --Model needs to be added to content.
+        self:SetModel( "models/props_combine/combine_generator01.mdl" ) --Model needs to be added to content.
         self:PhysicsInit( SOLID_VPHYSICS )
         self:SetSolid( SOLID_VPHYSICS )
         self:SetUseType( SIMPLE_USE )
