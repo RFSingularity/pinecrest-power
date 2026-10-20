@@ -52,7 +52,7 @@ if SERVER then
         local rope = constraint.FindConstraintEntity( self, "Rope" )
         if IsValid( rope ) then
 
-            local other = rope:GetConstrainedEntities() -- Need to check what the rope is also connected to.
+            local other = rope:GetConstrainedEntities() -- Need to check if the rope is connected to a Production Node.
 
             if IsValid( other ) and other.isNode and other.canTransfer then
                 -- print("Connected to Node")
