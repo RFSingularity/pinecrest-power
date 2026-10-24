@@ -36,4 +36,6 @@ The repair tool is an item that can be held by the player, when used on a Node, 
 
 The tool itself will be a pinecrest-weapon that players can spawn in via the pinecrest.weapons menu in the Q-Menu.
 ### How does the Repair Tool work?
-The tool will be able to repair nodes through a simple script that heals the Node over time as long as they player is holding down the fire butting, and they are close enough to the Node to interact with it. Instead of needing to press the "use key" they just have to "priamry fire" a Repair Tool at a Node to repair it.
+To activate the tool, the Secondary needs to be pressed first to turn on the "gas". When the Primary is pressed, the ignition sparks the gas and activates the tool, allowing it to be used for repairs.
+
+To un-ignite the tool, press the Secondary again and the gas will stop.
