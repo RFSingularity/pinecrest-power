@@ -3,7 +3,7 @@ AddCSLuaFile()
 SWEP.Base = "aerial_base"
 SWEP.PrintName = "Repair Tool"
 SWEP.Category = "Pinecrest"
-SWEP.Spawnable = false
+SWEP.Spawnable = true
 SWEP.AdminOnly = true
 
 SWEP.DrawCrosshair = false
@@ -12,7 +12,7 @@ SWEP.ViewModel = Model( "models/weapons/c_arms.mdl" )
 SWEP.WorldModel = Model("models/weapons/w_bugbait.mdl")
 SWEP.UseHands = false
 
-SWEP.Weight = 9999
+SWEP.Weight = 10
 SWEP.HoldType = "normal"
 
 SWEP.Primary.Automatic = false
