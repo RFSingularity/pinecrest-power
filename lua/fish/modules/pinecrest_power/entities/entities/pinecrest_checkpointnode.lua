@@ -10,7 +10,7 @@ ENT.AdminOnly = true
 ENT.maxHealth = 1500
 ENT.isNode = true
 ENT.canTransfer = false
-ENT.prodConnected = false --[[ Will be put through a check
+ENT.prodConnected = false --[[ TODO: Will be put through a check
 to see if this node is connected to a Production Node.]]
 
 function ENT:SetupDataTables()
@@ -53,7 +53,7 @@ if SERVER then
         local rope = constraint.FindConstraintEntity( self, "Rope" )
         if IsValid( rope ) then
 
-            local other = rope:GetConstrainedEntities() -- Need to check if the rope is connected to a Production Node.
+            local other = rope:GetConstrainedEntities() -- TODO: check if the rope is connected to a Production Node.
 
             if IsValid( other ) and other.isNode and other.canTransfer then
                 -- print("Connected to Node")
