@@ -33,5 +33,7 @@ This Node, however, is different in coparison to the other Nodes in the network.
 
 ## Repair Tool (SWEP)
 The repair tool is an item that can be held by the player, when used on a Node, it will heal that node while producing sparks as it raises the current health to the max health. This allows for players to repair Nodes when they stop functioning.
+
+The tool itself will be a pinecrest-weapon that players can spawn in via the pinecrest.weapons menu in the Q-Menu.
 ### How does the Repair Tool work?
 The tool will be able to repair nodes through a simple script that heals the Node over time as long as they player is holding down the fire butting, and they are close enough to the Node to interact with it. Instead of needing to press the "use key" they just have to "priamry fire" a Repair Tool at a Node to repair it.
