@@ -81,7 +81,6 @@ end
 
 if CLIENT then
    
-
     local red = Color( 255, 0, 0 )
     local green = Color( 0, 255, 0 )
     local material = Material("sprites/glow04_noz")
@@ -92,8 +91,8 @@ if CLIENT then
         local ang = self:GetAngles()
 
         lightPos:Add( ang:Forward() * -5 ) -- move it forward by X units
-        lightPos:Add( ang:Right() * -10 ) -- move it right by X units
-        lightPos:Add( ang:Up() * 20 )  -- move it up by X units
+        lightPos:Add( ang:Right() * -27 ) -- move it right by X units
+        lightPos:Add( ang:Up() * 65 )  -- move it up by X units
         local dlight = DynamicLight( self:EntIndex() )
 	    if ( dlight ) then
 		    dlight.pos = lightPos
