@@ -33,7 +33,7 @@ if SERVER then
     end
 
     function ENT:Initialize()
-        self:SetModel( "models/props_combine/combine_intwallunit.mdl" )
+        self:SetModel( "models/props_wasteland/laundry_dryer002.mdl" )
         self:SetSolid( SOLID_VPHYSICS )
         self:PhysicsInit( SOLID_VPHYSICS )
         self:SetUseType( SIMPLE_USE )
@@ -89,9 +89,9 @@ if CLIENT then
         local lightPos = self:GetPos()
         local ang = self:GetAngles()
 
-        lightPos:Add( ang:Forward() * 5 ) -- move it forward by X units
-        lightPos:Add( ang:Right() * 8 ) -- move it right by X units
-        lightPos:Add( ang:Up() * 12 )  -- move it up by X units
+        lightPos:Add( ang:Forward() * -5 ) -- move it forward by X units
+        lightPos:Add( ang:Right() * -10 ) -- move it right by X units
+        lightPos:Add( ang:Up() * 20 )  -- move it up by X units
         local dlight = DynamicLight( self:EntIndex() )
         
 	    if ( dlight ) then
