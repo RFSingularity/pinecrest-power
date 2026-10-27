@@ -28,7 +28,7 @@ if SERVER then
         local damage = dmginfo:GetDamage()
         self:SetHP(self:GetHP() - damage)
         if self:GetHP() <= 0 then
-            self:SetIsOn(false)
+            self:SetIsOn( false )
         end
     end
 
