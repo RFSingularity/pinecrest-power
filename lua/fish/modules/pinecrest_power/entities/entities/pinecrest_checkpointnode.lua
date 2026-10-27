@@ -26,7 +26,7 @@ if SERVER then
 
     function ENT:OnTakeDamage( dmginfo )
         local damage = dmginfo:GetDamage()
-        self:setHP(self:getHP() - damage)
+        self:GetHP(self:GetHP() - damage)
         if self:GetHP() <= 0 then
             self:SetIsOn( false )
             self.canTransfer = false
