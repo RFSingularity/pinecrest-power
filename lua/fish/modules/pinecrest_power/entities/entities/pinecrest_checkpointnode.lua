@@ -18,7 +18,6 @@ function ENT:SetupDataTables()
     self:NetworkVar( "Int", 0, "HP" ) -- Health Amount
     self:NetworkVar( "Bool", 1, "IsOn" ) -- Node on or off
     self:NetworkVar( "Bool", 2, "canTransfer" ) -- Can it transfer power
-    self:NetworkVar( "Bool", 3, "prodConnected") -- Boolean for Production Node
     
 end
 
@@ -30,7 +29,6 @@ if SERVER then
         if self:GetHP() <= 0 then
             self:SetIsOn( false )
             self.canTransfer = false
-            self.prodConnected = false
         end
     end
 
@@ -42,7 +40,6 @@ if SERVER then
         self:DrawShadow( true )
         self:SetHP( self.maxHealth )
         self.canTransfer = false
-        self.prodConnected = false
         local phys = self:GetPhysicsObject()
         phys:EnableMotion( false )
         
