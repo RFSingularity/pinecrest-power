@@ -1,51 +1,48 @@
 local nextThink = 0
 
---- @param ent Entity
---- @return boolean
-local function endsInResource( ent )
-    local rope = constraint.FindConstraintEntity( ent, "Rope" )
-    if not IsValid( rope ) then return false end
-
-    local ent1, ent2 = rope:GetConstrainedEntities()
-    local other = (ent == ent1 and ent2) or ent1
-
-    if not IsValid( other ) then return false end -- really shouldn't happen
-
-    if other:GetClass() == "pinecrest_resourcenode" then
-        return true
-    else
-        return endsInResource( other )
-    end
-end
-
 --- @param node Entity
+--- @param last Entity?
 --- @return Entity?
-local function getNext( node )
-    local rope = constraint.FindConstraintEntity( node, "Rope" )
-    if not IsValid( rope ) then return end
+local function getNext( node, last )
+    local ropes = constraint.FindConstraints( node, "Rope" )
 
-    local ent1, ent2 = rope:GetConstrainedEntities()
-    local other = (node == ent1 and ent2) or ent1
+    for _, rope in ipairs( ropes ) do
+        if rope.Ent1 == last or rope.Ent2 == last then continue end
 
-    if not IsValid( other ) then return end
+        local other = (node == rope.Ent1 and rope.Ent2) or rope.Ent1
 
-    return other
+        if not IsValid( other ) then return end
+
+        return other
+    end
+
+    return nil
 end
 
 --- @param prod Entity
 --- @param t Entity[]?
---- @return Entity[]?
-local function nodesInChain( prod, t )
-    local nodes = t or {}
+--- @param last Entity?
+--- @return Entity[]
+local function nodesInChain( prod, t, last )
+    local nodes = t or { prod }
 
-    local other = getNext( prod )
-    if IsValid( other ) and other.isNode then
+    local other = getNext( prod, last )
+    if other and IsValid( other ) and other.isNode and other ~= last then
         nodes[#nodes + 1] = other
 
-        nodesInChain( other, nodes )
+        nodes = nodesInChain( other, nodes, prod )
     end
 
     return nodes
+end
+
+--- @param chain Entity[]
+--- @return boolean
+local function endsInResource( chain )
+    local last = chain[#chain]
+    return
+        IsValid( last ) and
+        last:GetClass() == "pinecrest_resourcenode"
 end
 
 function MODULE.Hooks:Think()
@@ -53,39 +50,32 @@ function MODULE.Hooks:Think()
     nextThink = CurTime() + 5 -- however many seconds
 
     for _, production in ipairs( ents.FindByClass( "pinecrest_productionnode" ) ) do
-        if endsInResource( production ) then
-            -- do power transfers
-            -- set to green
-            return
-        elseif production:GetHP() <= 0 then
-            -- set production to RED
-            production:SetIsOn( false )
+        local chain = nodesInChain( production )
 
-            local nodes = nodesInChain( prod )
+        if endsInResource( chain ) then
+            for _, node in ipairs( chain ) do
+                if node:GetClass() ~= "pinecrest_productionnode" then
+                    node:SetCanTransfer( true )
+                end
+                node:SetIsOn( true )
+            end
+            continue
+        end
 
-            for _, node in ipairs( nodes ) do
-                -- set node to RED
+        -- red
+        if production:GetHP() <= 0 then
+            for _, node in ipairs( chain ) do
                 node:SetIsOn( false )
-
             end
-            return
+            continue
         else
-            -- set production to ORANGE
-
-            local nodes = nodesInChain( prod )
-
-            for _, node in ipairs( nodes ) do
-                -- set node to ORANGE
-                node:SetCanTransfer( false )
-
+            -- orange
+            for _, node in ipairs( chain ) do
+                if node:GetClass() ~= "pinecrest_productionnode" then
+                    node:SetCanTransfer( false )
+                end
+                node:SetIsOn( false )
             end
-            return
         end
     end
 end
-
-
-
-
-
-
