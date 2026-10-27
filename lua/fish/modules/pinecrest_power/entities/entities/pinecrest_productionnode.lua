@@ -53,20 +53,13 @@ if SERVER then
     -- every frame for this entity.
     function ENT:Think()
 
-        local rope = constraint.FindConstraintEntity( self, "Rope" )
-
         self:NextThink( CurTime() + self.powerInterval )
-        if IsValid( rope ) then
-            local other = rope:GetConstrainedEntities()
+
 
             if self:GetPowerLevel() < self.maxPower and self:GetIsOn() then
                 self:SetPowerLevel(self:GetPowerLevel() + 1 )
                 
             end
-        
-            -- REMINDME: STOP ADDING POWER WHEN CONNECTED!
-
-        end
 
         return true
     end

@@ -17,7 +17,7 @@ function ENT:SetupDataTables()
 
     self:NetworkVar( "Int", 0, "HP" ) -- Health Amount
     self:NetworkVar( "Bool", 1, "IsOn" ) -- Node on or off
-    self:NetworkVar( "Bool", 2, "canTransfer" ) -- Can it transfer power
+    self:NetworkVar( "Bool", 2, "CanTransfer" ) -- Can it transfer power
     
 end
 
@@ -28,7 +28,7 @@ if SERVER then
         self:GetHP(self:GetHP() - damage)
         if self:GetHP() <= 0 then
             self:SetIsOn( false )
-            self.canTransfer = false
+            self:SetCanTransfer( false )
         end
     end
 
@@ -45,42 +45,18 @@ if SERVER then
         
     end
 
-    function ENT:Think()
-
-        local rope = constraint.FindConstraintEntity( self, "Rope" )
-        if IsValid( rope ) then
-
-            local other = rope:GetConstrainedEntities() -- TODO: check if the rope is connected to a Production Node.
-
-            if IsValid( other ) and other.isNode and other.canTransfer then
-                print("Connected to Node")
-                if other.connectedNode and self:GetHP() >= 0 then
-                    self:SetIsOn( true )
-                    self.connectedNode = true
-                    self.canTransfer = true
-                end
-            end
-
-        elseif self.connectedNode then
-            self.connectedNode = false
-            self.canTransfer = false
-            self:SetIsOn( false )
-        end
-    end
-
-    function ENT:Use( client )
-    
-    end
 end
 
 if CLIENT then
 
     local red = Color( 255, 0, 0 )
     local green = Color( 0, 255, 0 )
+    local yellow = Color( 255, 255, 0 )
     local material = Material("sprites/glow04_noz")
     function ENT:Draw( flags )
         self:DrawModel( flags )
         local lightColor = self:GetIsOn() and green or red
+        lightColor = self:GetCanTransfer() and yellow or lightColor
         local lightPos = self:GetPos()
         local ang = self:GetAngles()
 

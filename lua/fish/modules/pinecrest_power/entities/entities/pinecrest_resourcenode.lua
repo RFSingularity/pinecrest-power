@@ -29,6 +29,7 @@ if SERVER then
         self:SetHP(self:GetHP() - damage)
         if self:GetHP() <= 0 then
             self:SetIsOn( false )
+            self:CanTransfer( false )
         end
     end
 
@@ -82,10 +83,12 @@ if CLIENT then
 
     local red = Color( 255, 0, 0 )
     local green = Color( 0, 255, 0 )
+    local yellow = Color( 255, 255, 0 )
     local material = Material( "sprites/glow04_noz" )
     function ENT:Draw( flags )
         self:DrawModel( flags )
         local lightColor = self:GetIsOn() and green or red
+        lightColor = self:GetCanTransfer() and yellow or lightColor
         local lightPos = self:GetPos()
         local ang = self:GetAngles()
 
