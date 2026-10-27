@@ -33,7 +33,7 @@ if SERVER then
     end
 
     function ENT:Initialize()
-        self:SetModel( "models/props_wasteland/laundry_dryer002.mdl" )
+        self:SetModel( "models/props_combine/combine_intwallunit" )
         self:SetSolid( SOLID_VPHYSICS )
         self:PhysicsInit( SOLID_VPHYSICS )
         self:SetUseType( SIMPLE_USE )
